@@ -24,7 +24,7 @@ export const Addnote = (props) => {
         <div>
             <div className="container my-3">
 
-                <h1>Write a Note</h1>
+                <h2>Write a Note</h2>
                 <form className="my-3">
                 <div className="mb-3">
                     <label htmlFor="title" className="form-label">Title</label>

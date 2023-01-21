@@ -4,14 +4,31 @@ import {Addnote} from './Addnote';
 import NoteContext from '../context/notes/NoteContext';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+const baseUrl = process.env.REACT_APP_BASE_URL
 
 const Notes = (props) => {
+    const [name, setName] = useState("")
     let navigate = useNavigate()
     const context = useContext(NoteContext)
     const { notes, getNotes,editNote } = context;
+
+    const getName = async (token)=>{
+        const response = await fetch(`${baseUrl}/api/auth/getuser`,{
+            method:"POST",
+            headers:{
+                "Content-type": "application/json; charset=UTF-8",
+                "auth-token":token,
+            }
+        });
+        const json = await response.json()
+        setName(json.name[0].toUpperCase()+json.name.slice(1))
+    }
+
     useEffect(() => {
         if(localStorage.getItem("token")){
+            const token = localStorage.getItem("token")
             getNotes()
+            getName(token)
         }
         else{
             navigate('/login')
@@ -39,6 +56,7 @@ const Notes = (props) => {
     
     return (
         <div>
+            <h1>Hi! <span id="username">{name}</span></h1>
             <Addnote showAlert = {props.showAlert} />
             <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Launch demo modal
