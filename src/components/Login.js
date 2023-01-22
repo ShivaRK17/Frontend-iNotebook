@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,Link } from 'react-router-dom'
 const baseUrl = process.env.REACT_APP_BASE_URL
 
 const Login = (props) => {
@@ -49,6 +49,7 @@ const Login = (props) => {
                     <label htmlFor="password" className="form-label">Password</label>
                     <input type="password" onChange={onChange} className="form-control" value={cred.password} name='password' id="password"/>
                 </div>
+                <h6>Don't have an account? Click <Link to="/signup">here</Link></h6>
                 <button type="submit" className="btn btn-primary">{submit}</button>
             </form>
         </div>
