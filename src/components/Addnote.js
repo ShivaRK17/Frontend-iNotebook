@@ -32,7 +32,7 @@ export const Addnote = (props) => {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="description" className="form-label">Description</label>
-                    <input type="text" className="form-control" id="description" name="description" value={Note.description} onChange={onChange} minLength={5} required />
+                    <textarea rows={4} type="text" className="form-control" id="description" name="description" value={Note.description} onChange={onChange} minLength={5} required />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="tag" className="form-label">Tag</label>
